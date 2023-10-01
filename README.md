@@ -1,5 +1,17 @@
 # Trees-and-Graphs
 
+<p align="center">
+	<img src="images/queue.png" width="949" height="396"/>
+</p>
+
+<p align="center">
+	<img src="images/stack.png" width="644" height="359"/>
+</p>
+
+<!-- [Resource](https://www.youtube.com/watch?v=44TwrxjfIfo&list=PLDV1Zeh2NRsCmu1lb9grUcljeYJtmgmYc) -->
+
+## Trees
+
 ```python
 A tree is an undirected graph with no cycle.
 A connected graph with N nodes and N - 1 edges.
@@ -206,3 +218,39 @@ When a element is to be inserted it is first added in the bottom most layer then
 to decide whether the node is to be added in the top layer or not, making it a probabilistic data structure. 
 ```
 
+## Graphs
+
+### Undirected graphs
+<br>
+Edges have no orientation (direction)
+
+#### Directed graphs
+<br>
+Edges have orientation (direction). Traversal happens in the indicated direction only and not the other way around.
+
+##### Weighted Graphs
+<br>
+Where edges have weights associated which connects nodes.
+
+###### Directed Acyclic graphs
+<br>
+Directed graphs with no cycles.
+
+**Storage methods**
+<br>
+- Adjacency 2D matrix.
+- Adjacency Lists.
+- Edge list.
+
+**Common Graph Theory**
+
+Askable questions:
+- Is the graph directed or undirected?
+- Are the edges of the graph weighted?
+- Is  the graph dense with edges?
+- What data structure should I use for representation of matrix?
+
+Shortest path from Node A to Node B. in a weighted graph.
+- Algos: BFS (unweighted graph), Dijkstra's, Bellman-Ford, A* 
+
+Connectivity between tw
