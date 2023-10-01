@@ -126,8 +126,8 @@ Queue
 
 **Validity**
 ```python
-A tree is binary search tree or not can checked by utilizing the property that inorder traversal generates a sorted list. 
-If it is not then three is not a valid BST
+A tree is binary search tree or not can checked by utilizing the property that inorder traversal
+ generates a sorted list. If it is not then three is not a valid BST
 ```
 **Height**
 ```python
@@ -184,7 +184,7 @@ log_2(n) < h < 2(log_2(n)) , where n is number of nodes
 
 [Treaps](https://www.youtube.com/watch?v=d0rlrRZc-0s)
 
-## Skip Tree
+## Skip List
 
 Alternative to balance trees.
 Randomized data structure uses probability.
@@ -199,6 +199,10 @@ Each layer is sorted
 And two pointers are used, right  - indicating to next element in same layer.
                            bottom - indicating to same element in the below layer.
 
-Start from
+Start from top left elements go right until required element is greater that current element
+Move down if next element is greater that required element, repeat the process.
+
+When a element is to be inserted it is first added in the bottom most layer then a coin is tossed
+to decide whether the node is to be added in the top layer or not, making it a probabilistic data structure. 
 ```
 
