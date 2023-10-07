@@ -1,21 +1,43 @@
 # Trees-and-Graphs
 
 <p align="center">
-	<img src="images/queue.png" width="949" height="396"/>
+	<b>Stack</b>
+</p>
+<p align="center">
+	<img src="images/stack.png" width="495" height="276"/>
 </p>
 
 <p align="center">
-	<img src="images/stack.png" width="644" height="359"/>
+	<b>Queue</b>
+</p>
+<p align="center">
+	<img src="images/queue.png" width="730" height="304"/>
 </p>
 
-<!-- [Resource](https://www.youtube.com/watch?v=44TwrxjfIfo&list=PLDV1Zeh2NRsCmu1lb9grUcljeYJtmgmYc) -->
 
 ## Trees
+
+<p align="center">
+	<b>Tree</b>
+</p>
+<p align="center">
+	<img src="images/tree.png" width="754" height="275"/>
+</p>
 
 ```python
 A tree is an undirected graph with no cycle.
 A connected graph with N nodes and N - 1 edges.
 
+```
+
+<p align="center">
+	<b>Root</b>
+</p>
+<p align="center">
+	<img src="images/root.png" width="754" height="275"/>
+</p>
+
+```python
 Rooted Tree => A tree with a designated root node with preferred directional edges.
 ```
 
@@ -32,9 +54,18 @@ Adjacency Matrix
 
 Flattened array => preferred for binary trees
     Where each node is assigned an index and the values are stored in an array with the indexes.
+
+Trees can be non-directional as well.
 ```
 
 ## Binary Trees
+
+<p align="center">
+	<b>Binary</b>
+</p>
+<p align="center">
+	<img src="images/binary.png" width="754" height="275"/>
+</p>
 
 ```python
 Every Nodes has at most two child nodes.
@@ -44,9 +75,6 @@ Leaf Node => Lowest node with the tree  (Node with no children)
 Height => Number of edges from the root node of leaf node.
 
 Parent of root node is NIL
-
-Binary Search Tree => an variant of BT where the value of left node is less than 
-and value of right node is greater than the value of current node.
 
 DataType: Set based Collection
 
@@ -63,6 +91,20 @@ Each node has a key (value of node) associated so that it can be referenced and 
 Successor of a node N:
     The node with the smallest key greater than N's key.
     i.e move one step to right and then all the way to leftmost leaf.
+
+```
+
+<p align="center">
+	<b>Binary Search Tree</b>
+</p>
+<p align="center">
+	<img src="images/bst.png" width="754" height="257"/>
+</p>
+
+```python
+
+Binary Search Tree => an variant of BT where the value of left node is less than 
+and value of right node is greater than the value of current node.
 
 Bad BST => when height of tree is same as number of nodes
 
@@ -134,6 +176,40 @@ Queue
     Useful to find the height of the tree.
 ```
 
+### Common Graph Theory Problems
+
+**Lowest Common Ancestor**
+
+```python
+check whether the nodes p and q are in the left and right subtrees of the current node,
+and if so, returns the current node as the lowest common ancestor. Otherwise, 
+it recursively searches in either the left or right subtree based on the presence of nodes p and q.
+
+Pseudocode:
+
+function lowestCommonAncestor(root, p, q):
+    if root is None:
+        return None
+    
+    # If either p or q matches the root value, it is the LCA
+    if root == p or root == q:
+        return root
+    
+    # Recur for left and right subtrees
+    left_lca = lowestCommonAncestor(root.left, p, q)
+    right_lca = lowestCommonAncestor(root.right, p, q)
+    
+    # If both nodes are found in the left and right subtrees, then the current node is the LCA
+    if left_lca and right_lca:
+        return root
+    
+    # Otherwise, return the non-None node (either left_lca or right_lca)
+    return left_lca if left_lca else right_lca
+
+```
+**Binary Tree From Preorder**
+**Recovery of Binary Tree**
+
 ### Operations
 
 **Validity**
@@ -163,7 +239,7 @@ For deletion different cases needs to considered.
 ## Self Balancing Trees
 
 ```python
-Trees which optimize their structure so that eh height of the tree is as low as possible
+Trees which optimize their structure so that the height of the tree is as low as possible.
 ```
 
 ### Red-Black Trees
@@ -218,39 +294,113 @@ When a element is to be inserted it is first added in the bottom most layer then
 to decide whether the node is to be added in the top layer or not, making it a probabilistic data structure. 
 ```
 
+---
+
 ## Graphs
 
-### Undirected graphs
-<br>
+**Undirected graphs**
+```python
 Edges have no orientation (direction)
+```
 
-#### Directed graphs
-<br>
+**Directed graphs**
+```python
 Edges have orientation (direction). Traversal happens in the indicated direction only and not the other way around.
+```
 
-##### Weighted Graphs
-<br>
+**Weighted Graphs**
+```python
 Where edges have weights associated which connects nodes.
+```
 
-###### Directed Acyclic graphs
-<br>
+**Directed Acyclic graphs**
+```python
 Directed graphs with no cycles.
+```
 
 **Storage methods**
-<br>
+```python
 - Adjacency 2D matrix.
 - Adjacency Lists.
 - Edge list.
+```
 
-**Common Graph Theory**
+### Traversal
 
+**Depth First Search**
+
+```python
+Plunges depth first into into a graph without regard for which edge it take next
+until it cannot go further at which point it backtracks and continues.
+
+We do not revisit a node. This happens in case of cycle, so
+So we backtrack to the cycle origin and continue.
+
+Usage:
+    - Used to find number of components within a graph by assigning ids to each group.
+    - Compute a graphs minimum spanning tree
+    - Detect and find cycles
+    - Check if a graph is a bipartite
+    - Find strongly connected components.
+    - Topologically sort the nodes of a graph.
+    - Find bridges and articulation points.
+    - Find augmented paths in a flow network.
+    - Generate mazes.
+    
+```
+
+**Breadth First Search**
+
+```python
+Explores the neighbor nodes first, before moving to the next level of neighbors.
+Utilizes queue to store the node yet to be visited
+
+usage:
+    - Shortest path on unweighted graphs.
+```
+
+### Common Graph Theory Problems
+
+```python
 Askable questions:
 - Is the graph directed or undirected?
 - Are the edges of the graph weighted?
 - Is  the graph dense with edges?
 - What data structure should I use for representation of matrix?
+```
 
+```python
 Shortest path from Node A to Node B. in a weighted graph.
 - Algos: BFS (unweighted graph), Dijkstra's, Bellman-Ford, A* 
 
-Connectivity between tw
+Connectivity between two Node
+- Solution: Search operation.
+
+Negative cycles
+- Algos: Bellman-Ford, Floyd-Warshall
+
+Strongly Connected Components
+- Algos: Tarjans' and Kosaraju's
+
+**Traveling Sales Person**
+- Algos: Held-Karp, branch and bound.
+
+Bridges
+
+Minimal Spanning Trees
+- Algos: Krushal's, Prims's, 
+
+Network Flow
+- Algos: Ford-Fulkerson.
+
+Identification of cycles
+```
+**BFS on Grids**
+
+```python
+```
+
+## Resource
+
+
+[Resource](https://www.youtube.com/watch?v=44TwrxjfIfo&list=PLDV1Zeh2NRsCmu1lb9grUcljeYJtmgmYc)
