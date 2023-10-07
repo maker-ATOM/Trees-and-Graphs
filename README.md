@@ -384,8 +384,9 @@ Usage:
     - Find bridges and articulation points.
     - Find augmented paths in a flow network.
     - Generate mazes.
-    
 ```
+
+[Visualization](https://www.youtube.com/watch?v=NUgMa5coCoE)
 
 **Breadth First Search**
 
@@ -396,6 +397,8 @@ Utilizes queue to store the node yet to be visited
 usage:
     - Shortest path on unweighted graphs.
 ```
+
+[Visualization](https://www.youtube.com/watch?v=x-VTfcmrLEQ)
 
 ### Common Graph Theory Problems
 
