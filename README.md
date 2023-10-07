@@ -31,7 +31,7 @@ A connected graph with N nodes and N - 1 edges.
 ```
 
 <p align="center">
-	<b>Root</b>
+	<b>Rooting a Tree</b>
 </p>
 <p align="center">
 	<img src="images/root.png" width="754" height="275"/>
@@ -61,7 +61,7 @@ Trees can be non-directional as well.
 ## Binary Trees
 
 <p align="center">
-	<b>Binary</b>
+	<b>Binary Tree</b>
 </p>
 <p align="center">
 	<img src="images/binary.png" width="754" height="275"/>
@@ -176,7 +176,7 @@ Queue
     Useful to find the height of the tree.
 ```
 
-### Common Graph Theory Problems
+### Common Tree Problems
 
 **Lowest Common Ancestor**
 
@@ -208,7 +208,10 @@ function lowestCommonAncestor(root, p, q):
 
 ```
 **Binary Tree From Preorder**
+
 **Recovery of Binary Tree**
+
+**Rooting a Tree**
 
 ### Operations
 
@@ -298,25 +301,62 @@ to decide whether the node is to be added in the top layer or not, making it a p
 
 ## Graphs
 
-**Undirected graphs**
+<p align="center">
+	<b>Undirected graphs</b>
+</p>
+
 ```python
 Edges have no orientation (direction)
 ```
 
-**Directed graphs**
+<p align="center">
+	<b>Queue</b>
+</p>
+<p align="center">
+	<img src="images/undirected.png" width="730" height="304"/>
+</p>
+
+
+<p align="center">
+	<b>Directed graphs</b>
+</p>
+
 ```python
 Edges have orientation (direction). Traversal happens in the indicated direction only and not the other way around.
 ```
 
-**Weighted Graphs**
+
+<p align="center">
+	<img src="images/directedgraph.png" width="730" height="304"/>
+</p>
+
+<p align="center">
+	<b>Weighted Graphs</b>
+</p>
+
+
 ```python
 Where edges have weights associated which connects nodes.
 ```
 
-**Directed Acyclic graphs**
+
+<p align="center">
+	<img src="images/weighted.png" width="730" height="304"/>
+</p>
+
+<p align="center">
+	<b>Directed Acyclic graphs</b>
+</p>
+
+
 ```python
 Directed graphs with no cycles.
 ```
+
+
+<p align="center">
+	<img src="images/directedacyclic.png" width="730" height="304"/>
+</p>
 
 **Storage methods**
 ```python
