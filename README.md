@@ -309,9 +309,7 @@ to decide whether the node is to be added in the top layer or not, making it a p
 Edges have no orientation (direction)
 ```
 
-<p align="center">
-	<b>Queue</b>
-</p>
+
 <p align="center">
 	<img src="images/undirected.png" width="730" height="304"/>
 </p>
@@ -327,7 +325,7 @@ Edges have orientation (direction). Traversal happens in the indicated direction
 
 
 <p align="center">
-	<img src="images/directedgraph.png" width="730" height="304"/>
+	<img src="images/directed.png" width="730" height="304"/>
 </p>
 
 <p align="center">
@@ -355,7 +353,7 @@ Directed graphs with no cycles.
 
 
 <p align="center">
-	<img src="images/directedacyclic.png" width="730" height="304"/>
+	<img src="images/directedacyclic.png" width="890" height="271"/>
 </p>
 
 **Storage methods**
