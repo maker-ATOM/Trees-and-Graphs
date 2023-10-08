@@ -1,4 +1,3 @@
-# Trees-and-Graphs
 
 <p align="center">
 	<b>Stack</b>
@@ -15,7 +14,7 @@
 </p>
 
 
-## Trees
+# Trees
 
 <p align="center">
 	<b>Tree</b>
@@ -299,7 +298,7 @@ to decide whether the node is to be added in the top layer or not, making it a p
 
 ---
 
-## Graphs
+# Graphs
 
 <p align="center">
 	<b>Undirected graphs</b>
@@ -311,7 +310,7 @@ Edges have no orientation (direction)
 
 
 <p align="center">
-	<img src="images/undirected.png" width="730" height="304"/>
+	<img src="images/undirected.png" width="856" height="363"/>
 </p>
 
 
@@ -325,7 +324,7 @@ Edges have orientation (direction). Traversal happens in the indicated direction
 
 
 <p align="center">
-	<img src="images/directed.png" width="730" height="304"/>
+	<img src="images/directed.png" width="856" height="331"/>
 </p>
 
 <p align="center">
@@ -339,7 +338,7 @@ Where edges have weights associated which connects nodes.
 
 
 <p align="center">
-	<img src="images/weighted.png" width="730" height="304"/>
+	<img src="images/weighted.png" width="856" height="331"/>
 </p>
 
 <p align="center">
@@ -363,6 +362,8 @@ Directed graphs with no cycles.
 - Edge list.
 ```
 
+Reverse of a graph is a graph where the direction all the directed edges are reversed. If a graph is denoted by Adjacency 2D matrix the reverse of it is simply the transpose of the matrix. 
+
 ### Traversal
 
 **Depth First Search**
@@ -384,9 +385,35 @@ Usage:
     - Find bridges and articulation points.
     - Find augmented paths in a flow network.
     - Generate mazes.
+
+Utilizes recursive method to traverse the neighbor node of the current node.
+
+
+Algorithm:
+
+def bfsOfGraph(V,adj):
+    bfs = []  # List to store BFS traversal
+    visited = [False] * V  # Initialize visited array
+    queue = deque([0])  # Start BFS from node 0
+
+    while queue:
+        node = queue.popleft()
+        bfs.append(node)
+        visited[node] = True
+
+        for neighbor in adj[node]:
+            if not visited[neighbor]:
+                queue.append(neighbor)
+                visited[neighbor] = True
+
+    return bfs
 ```
 
 [Visualization](https://www.youtube.com/watch?v=NUgMa5coCoE)
+
+One of the traversal aspect is the discovery and finish time.
+Discovery time is the time stamp from the start of the traversal when the node is marked visited and finish time is the time stamp where the there are no more neighbors of the node and the is never going to be visited.
+Each jump from a node to another results in increment in time.
 
 **Breadth First Search**
 
@@ -396,6 +423,26 @@ Utilizes queue to store the node yet to be visited
 
 usage:
     - Shortest path on unweighted graphs.
+
+Utilizes queue to store the next node should be visited next.
+
+Algorithm:
+
+def dfsOfGraph(self, V, adj):
+    # code here
+    visited = [False] * V
+    dfslist = []
+    
+    def dfs(node):
+        if visited[node]: return
+        dfslist.append(node)
+        visited[node] = True
+        
+        for neighnbours in adj[node]:
+            dfs(neighnbours)
+        
+    dfs(0)
+    return dfslist
 ```
 
 [Visualization](https://www.youtube.com/watch?v=x-VTfcmrLEQ)
@@ -439,6 +486,77 @@ Identification of cycles
 **BFS on Grids**
 
 ```python
+A grid can be easily converted to a Adjacency list.
+    - LAbel each cell with numbers, each cell denotes a node.
+    - Neighboring cells are ones connected up, down, left and right
+
+A grid if represented using a 2D matrix (x,y) in that senario we do not need to
+generate a Adjacency list, adjacent elements are can evaluated by adding a direction vector.
+and then checking if the generated cell is a valid cell or not.
+If it is enqueue it for next iteration and mark it as visited.
+
+If the path is to be drawn from start to end we need to store 
+the previously visited node for each current node.
+```
+
+**Topological Sort**
+
+<p align="center">
+	<img src="images/topsort.png" width="890" height="271"/>
+</p>
+
+```python
+A topological ordering is an ordering of the nodes in a directed edge from node A to B, 
+where node A appears before node B in the ordering.
+
+Topological ordering are NOT unique. 
+
+A graph with cycle cannot have a valid ordering.
+Only Directed Acyclic Graphs have valid topological ordering.
+How to find if a graph contains cycle or not?
+    Tarjan's strongly connected components.
+
+All trees have topological ordering which is the BFS traversal of the tree.
+
+Algorithm:
+    Pick and unvisited node.
+    Beginning with the selected node, da a DFS exploring only unvisited nodes.
+    On recursive callback of DFS, and the current node to the topological ordering in reverse order.
+```
+
+**Strongly connected components (SCC)**
+
+<p align="center">
+	<img src="images/scc.png" width="987" height="362"/>
+</p>
+
+```python
+Strongly connected components cab thought of as self-contained cycles within a directed graph where
+every vertex in a given cycle can reach every other vertex of the same cycle. 
+
+Low-Link Value:
+    The low-link value of a node is the smallest (lowest) node id reachable from that node when doing a DFS (including itself)
+When assigned low link values to the nodes traversed in DFS in turns out to be that all strongly connected components have same low link value.
+But this depends on the start node of DFS which is random.
+
+This is where tarjan's algo come in handy.
+
+Tarjan's Algorithm:
+    Mark the id of each node as unvisited.
+    Start DFS. Upon visiting a node assign it an id and a low-link value. 
+        Also mark current nodes as visited and add them to a seen stack.
+    On DFS callback if the prev node is on stack then min the current node's low link value with the last node's low link value. (
+            This allows low link values to propagate through cycles)
+    After visiting all neighbors, if the current node started a connected component(
+            a node starts a connected component if its id is equal to its low link value) then 
+            pop nodes off stack until current node is reached.
+
+Maximal strongly connected components are ones which cannot be extended into SCC by adding other nodes.
+Properties:
+    Intersection of all MSCC is a null set.
+    If we combine all SCC into a single node then the super-graph generated is a directed acyclic graph
+
+SCC can also be figured out by performing DFS on the reverse graph and generating a list of completed cycles.
 ```
 
 ## Resource
