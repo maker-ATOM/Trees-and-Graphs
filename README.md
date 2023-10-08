@@ -527,7 +527,7 @@ Algorithm:
 **Strongly connected components (SCC)**
 
 <p align="center">
-	<img src="images/scc.png" width="987" height="362"/>
+	<img src="images/scc.png" width="927" height="362"/>
 </p>
 
 ```python
@@ -562,4 +562,4 @@ SCC can also be figured out by performing DFS on the reverse graph and generatin
 ## Resource
 
 
-[Resource](https://www.youtube.com/watch?v=44TwrxjfIfo&list=PLDV1Zeh2NRsCmu1lb9grUcljeYJtmgmYc)
+[William Fiset](https://www.youtube.com/watch?v=44TwrxjfIfo&list=PLDV1Zeh2NRsCmu1lb9grUcljeYJtmgmYc)
