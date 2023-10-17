@@ -364,7 +364,7 @@ Directed graphs with no cycles.
 
 Reverse of a graph is a graph where the direction all the directed edges are reversed. If a graph is denoted by Adjacency 2D matrix the reverse of it is simply the transpose of the matrix. 
 
-### Traversal
+## Traversal
 
 **Depth First Search**
 
@@ -447,7 +447,7 @@ def dfsOfGraph(self, V, adj):
 
 [Visualization](https://www.youtube.com/watch?v=x-VTfcmrLEQ)
 
-### Common Graph Theory Problems
+## Common Graph Theory Problems
 
 ```python
 Askable questions:
@@ -506,7 +506,9 @@ the previously visited node for each current node.
 </p>
 
 ```python
-A topological ordering is an ordering of the nodes in a directed edge from node A to B, 
+A topological ordering is an ordering of the nodes in a directed
+    ﻿
+ edge from node A to B, 
 where node A appears before node B in the ordering.
 
 Topological ordering are NOT unique. 
@@ -531,8 +533,9 @@ Algorithm:
 </p>
 
 ```python
-Strongly connected components cab thought of as self-contained cycles within a directed graph where
+Strongly connected components can thought of as self-contained cycles within a directed graph where
 every vertex in a given cycle can reach every other vertex of the same cycle. 
+More or else it is a group of nodes within the graph where each node can be reached from every other node.
 
 Low-Link Value:
     The low-link value of a node is the smallest (lowest) node id reachable from that node when doing a DFS (including itself)
@@ -545,11 +548,11 @@ Tarjan's Algorithm:
     Mark the id of each node as unvisited.
     Start DFS. Upon visiting a node assign it an id and a low-link value. 
         Also mark current nodes as visited and add them to a seen stack.
-    On DFS callback if the prev node is on stack then min the current node's low link value with the last node's low link value. (
-            This allows low link values to propagate through cycles)
-    After visiting all neighbors, if the current node started a connected component(
-            a node starts a connected component if its id is equal to its low link value) then 
-            pop nodes off stack until current node is reached.
+    On DFS callback if the prev node is on stack then min the current node's low link value with the last node's low link value. 
+        (This allows low link values to propagate through cycles)
+    After visiting all neighbors, if the current node started a connected component
+        (a node starts a connected component if its id is equal to its low link value) 
+            then pop nodes off stack until current node is reached.
 
 Maximal strongly connected components are ones which cannot be extended into SCC by adding other nodes.
 Properties:
@@ -557,6 +560,53 @@ Properties:
     If we combine all SCC into a single node then the super-graph generated is a directed acyclic graph
 
 SCC can also be figured out by performing DFS on the reverse graph and generating a list of completed cycles.
+```
+
+**Amortized Analysis**
+
+```python
+Technique for analyzing cost of operations.
+```
+
+**Minimal Spanning Tree (MST)**
+
+<p align="center">
+	<img src="images/mst.png" width="840" height="483"/>
+</p>
+
+```python
+A minimum spanning tree is a subset of the edges in the graph which connects all vertices together, 
+without creating any cycle while minimizing the total edge cost.
+A graph can have multiple MST with same costs.
+MST are not unique.
+All the nodes must be connected to form a spanning tree.
+
+Example: nodes can be servers and weighted edges can be speed of transmission.
+
+Prim's Algorithm
+    Greedy Algorithm
+    Difficult to find MST on disconnected components using this algo.
+
+    Maintain a min Priority Queue (PQ) that sorts edges based on min edge cost. 
+    This will be used to determine the next node to visit and the edge used to get there.
+    Start the algorithm on any node s. Mark s as visited and iterate over all edges of s, adding them to the PQ.
+    While the PQ is not empty and a MST has not been formed, dequeue the next cheapest edge from the PQ.
+    If the dequeued edge is outdated (meaning the node it points to has already been visited) then skip it and poll again.
+    Otherwise, mark the current node as visited and add the selected edge to the MST.
+    Iterate over the new current node's edges and add all its edges to the PQ. Do not add edges to the PQ which point to already visited nodes.
+
+    The algorithm can be stopped when number of edges are one less than number of nodes as this is one of the definition of trees.
+
+    Usually for this algo the graph is represented as adjacency list with all undirected edges as
+    two directed edges. As the graph becomes dense adjacency matrix is preferred over list.
+
+    As an upgrade we can avoid adding edges in the PQ which can become stale
+
+Eager Prim's
+    Tracks (node, edge) key value pairs that can easily be updated and polled to determine the next best edge to add in MST.
+    Instead of adding edges to the PQ as we iterate over the edges of node, we are going to update 
+    the destination node's most promising incoming edge. 
+
 ```
 
 ## Resource
