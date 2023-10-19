@@ -1,3 +1,37 @@
+<!-- 
+Playlist status
+
+11
+12
+13
+14
+
+17
+18
+19
+20
+21
+22
+
+24
+25
+26
+27
+28
+29
+
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+ -->
 
 <p align="center">
 	<b>Stack</b>
@@ -12,6 +46,7 @@
 <p align="center">
 	<img src="images/queue.png" width="730" height="304"/>
 </p>
+
 
 
 # Trees
@@ -409,6 +444,10 @@ def bfsOfGraph(V,adj):
     return bfs
 ```
 
+```python
+Complexity: O(V+E)
+```
+
 [Visualization](https://www.youtube.com/watch?v=NUgMa5coCoE)
 
 One of the traversal aspect is the discovery and finish time.
@@ -443,6 +482,10 @@ def dfsOfGraph(self, V, adj):
         
     dfs(0)
     return dfslist
+```
+
+```python
+Complexity: O(V+E)
 ```
 
 [Visualization](https://www.youtube.com/watch?v=x-VTfcmrLEQ)
@@ -506,9 +549,7 @@ the previously visited node for each current node.
 </p>
 
 ```python
-A topological ordering is an ordering of the nodes in a directed
-    ﻿
- edge from node A to B, 
+A topological ordering is an ordering of the nodes in a directed edge from node A to B, 
 where node A appears before node B in the ordering.
 
 Topological ordering are NOT unique. 
@@ -521,9 +562,24 @@ How to find if a graph contains cycle or not?
 All trees have topological ordering which is the BFS traversal of the tree.
 
 Algorithm:
-    Pick and unvisited node.
+    Pick an unvisited node.
     Beginning with the selected node, da a DFS exploring only unvisited nodes.
-    On recursive callback of DFS, and the current node to the topological ordering in reverse order.
+    On recursive callback of DFS, add the current node to the topological ordering in reverse order.
+
+Kahn's Algorithm
+    Detects if a graphs contains a cycle or not. 
+
+    Repeatedly remove nodes without any dependencies from the graph and add them to the topological ordering.
+    As nodes without dependencies (and their outgoing edges) are removed from the graph, 
+    new nodes without dependencies should become free.
+    We repeat removing nodes without dependencies from the graph until all nodes are processed, 
+    or a cycle is discovered. 
+
+    Dependencies can be found out from the Adjacency list or matrix.
+```
+
+```python
+Complexity: O(V+E)
 ```
 
 **Strongly connected components (SCC)**
@@ -560,6 +616,10 @@ Properties:
     If we combine all SCC into a single node then the super-graph generated is a directed acyclic graph
 
 SCC can also be figured out by performing DFS on the reverse graph and generating a list of completed cycles.
+```
+
+```python
+Complexity: linear O(V+E)
 ```
 
 **Amortized Analysis**
@@ -604,18 +664,50 @@ Prim's Algorithm
 
     As an upgrade we can avoid adding edges in the PQ which can become stale
 
+    Complexity: O(E * log(E))
+
 Eager Prim's
     Tracks (node, edge) key value pairs that can easily be updated and polled to determine the next best edge to add in MST.
     Instead of adding edges to the PQ as we iterate over the edges of node, we are going to update 
     the destination node's most promising incoming edge. 
 
+    Complexity: O(E * log(V))
+
 Kruskal's Algorithm
+    Greedy
     Intermediate state is not a tree but a forest which we try to connect at the end.
 
     Sort the edges in ascending order.
     If an edge connects two different trees in an forest add it and make a single tree. 
 
+    Complexitiy:  O(E * log(V))
 ```
+
+### Union Find Data Structure 
+
+Useful to find Minimal Spanning Tree
+
+**Family of Disjoint Sets**
+
+```python
+e.g U = {1,2,3,4,5,6}
+S1 = {1,2}, S2 = {2,4,5}, s3 = {6}
+Intersection of all member in Null
+
+Operations:
+
+MakeSet => create a new set
+Find    => return the representative of the set in which the element is
+Union   => merger two or more sets
+
+The set are presented by reverse tree. And the representative of the set is the root of the tree.
+Note the tree is not binary so a node can have multiple children.
+Rank is the longest path to leaf
+
+The root with bigger rank of the tree becomes the representative while performing Union.
+this reduces the depth of tree after multiple Union operations
+```
+
 
 ## Resource
 
