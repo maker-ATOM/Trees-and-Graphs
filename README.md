@@ -529,7 +529,7 @@ Algorithm:
 **Strongly connected components (SCC)**
 
 <p align="center">
-	<img src="images/scc.png" width="927" height="362"/>
+	<img src="images/scc.png" width="987" height="362"/>
 </p>
 
 ```python
@@ -580,6 +580,8 @@ without creating any cycle while minimizing the total edge cost.
 A graph can have multiple MST with same costs.
 MST are not unique.
 All the nodes must be connected to form a spanning tree.
+Can be used to find the minimum cost required to reach from one node to other.
+Technically we drop edges with higher weights.
 
 Example: nodes can be servers and weighted edges can be speed of transmission.
 
@@ -606,6 +608,12 @@ Eager Prim's
     Tracks (node, edge) key value pairs that can easily be updated and polled to determine the next best edge to add in MST.
     Instead of adding edges to the PQ as we iterate over the edges of node, we are going to update 
     the destination node's most promising incoming edge. 
+
+Kruskal's Algorithm
+    Intermediate state is not a tree but a forest which we try to connect at the end.
+
+    Sort the edges in ascending order.
+    If an edge connects two different trees in an forest add it and make a single tree. 
 
 ```
 
