@@ -427,8 +427,6 @@ Usage:
 
 Utilizes recursive method to traverse the neighbor node of the current node.
 
----
-
 PseudoCode:
 
 # Global or class scope variables n = number of nodes in the graph
@@ -444,26 +442,7 @@ function dfs(at):
 # Start DFS at node zero start_node = 0
 dfs(start_node)
 
----
 
-Algorithm:
-
-def bfsOfGraph(V,adj):
-    bfs = []  # List to store BFS traversal
-    visited = [False] * V  # Initialize visited array
-    queue = deque([0])  # Start BFS from node 0
-
-    while queue:
-        node = queue.popleft()
-        bfs.append(node)
-        visited[node] = True
-
-        for neighbor in adj[node]:
-            if not visited[neighbor]:
-                queue.append(neighbor)
-                visited[neighbor] = True
-
-    return bfs
 ```
 
 ```python
@@ -472,9 +451,6 @@ Complexity: O(V+E)
 
 [Visualization](https://www.youtube.com/watch?v=NUgMa5coCoE)
 
-One of the traversal aspect is the discovery and finish time.
-Discovery time is the time stamp from the start of the traversal when the node is marked visited and finish time is the time stamp where the there are no more neighbors of the node and the is never going to be visited.
-Each jump from a node to another results in increment in time.
 
 **Breadth First Search**
 
@@ -486,8 +462,6 @@ usage:
     - Shortest path on unweighted graphs.
 
 Utilizes queue to store the next node should be visited next.
-
----
 
 PseudoCode:
 # Global/class scope variables 
@@ -520,25 +494,7 @@ function solve(s):
             visited [next] = true 
             prev [next] = node
 return prev
----
 
-Algorithm:
-
-def dfsOfGraph(self, V, adj):
-    # code here
-    visited = [False] * V
-    dfslist = []
-    
-    def dfs(node):
-        if visited[node]: return
-        dfslist.append(node)
-        visited[node] = True
-        
-        for neighnbours in adj[node]:
-            dfs(neighnbours)
-        
-    dfs(0)
-    return dfslist
 ```
 
 ```python
@@ -546,6 +502,10 @@ Complexity: O(V+E)
 ```
 
 [Visualization](https://www.youtube.com/watch?v=x-VTfcmrLEQ)
+
+One of the traversal aspect is the discovery and finish time.
+Discovery time is the time stamp from the start of the traversal when the node is marked visited and finish time is the time stamp where the there are no more neighbors of the node and the is never going to be visited.
+Each jump from a node to another results in increment in time.
 
 ## Common Graph Theory Problems
 
