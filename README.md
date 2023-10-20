@@ -6,10 +6,9 @@ Playlist status
 13
 14
 
-17
 18
 19
-20
+
 21
 22
 
@@ -458,7 +457,7 @@ Each jump from a node to another results in increment in time.
 
 ```python
 Explores the neighbor nodes first, before moving to the next level of neighbors.
-Utilizes queue to store the node yet to be visited
+Utilizes queue to store the node yet to be visited.
 
 usage:
     - Shortest path on unweighted graphs.
@@ -682,6 +681,78 @@ Kruskal's Algorithm
 
     Complexitiy:  O(E * log(V))
 ```
+
+**Shortest Path**
+
+<p align="center">
+	<img src="images/shortpath.png" width="603" height="254"/>
+</p>
+
+
+```python
+Path consisting of least weight from source to destination.
+
+Shortest Path form a tree.
+
+Negative cyccles => sum of the path is negative after completing a cycle.
+
+A problem arieses if the graph has negative weight cycle,
+in that case the path can have -inf value as circling around the cycle is going to reduce the total eight of the path.
+
+Single Source Shortest Path => shortest path from source to any other node.
+
+At the basic level shortest path can be found out while performing topological sort.
+
+Complexity: O(V+E)
+```
+
+**Bellman Ford**
+
+```python
+Complexity: O(EV)
+```
+
+```python
+It is Single Source Shortest Path Algorithm.
+
+Can be usd to detect negative cycles anf determine where they occur.
+
+A array D stores the shortest path weights.
+
+Algorithm:
+    Set every element in D to inf as initially it is unknown.
+    Set D[start_node] = 0 as distance from source to source is zero.
+    loop through all edges and 
+        if distance of edge_start + edge_weight < edge_end
+            edge_end = edge_start + edge_weight
+edge_end and edge_start are the current estimation to reach those nodes.
+this operation is called as edge relaxation.
+
+V - 1 iteration needs to be performed.
+
+We say the algorithm has found shortest path to all other nodes 
+when there is no more opportunity to relax a edge.
+
+The weights corresponding to shortest might not represent a real path.
+
+Algo is monotonic that is current distance to node will never decrease than shortest path
+it will always be equal or greater than.
+
+If shortest path is not inf then there exists a path from source to destination.
+
+For negative weight cycles after V - 1 iteration if there is any possibility even after V - 1 iteration of relaxation,
+then there exists a negative cycle within the graph.
+```
+
+**Dijkstra**
+
+```python
+Complexity: O((E+V)log(V)
+```
+```python
+Fails on negative edges
+```
+
 
 ### Union Find Data Structure 
 
