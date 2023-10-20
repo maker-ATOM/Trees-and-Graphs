@@ -182,75 +182,46 @@ def sort_edges(self):
 
 # Complete the missing parts of the function in the code below to compute strongly connected components.
 
-# In[19]:
+# In[40]:
 
 
-def compute_scc(g, w):
+def compute_scc(g, W):
     # create a disjoint forest with as many elements as number of vertices
     # Next compute the strongly connected components using the disjoint forest data structure
     d = DisjointForests(g.n)
-
-    # Create a list to store directed edges with weights less than or equal to the threshold.
-    directed_edges = []
-
-    for i in range(g.n):
-        for j in range(i + 1, g.n):
-            weight = None
-            for edge in g.edges:
-                if (i, j, w) in edge or (j, i, w) in edge:
-                    weight = w
-                    break
-            if weight is not None and weight <= threshold:
-                directed_edges.append((i, j, weight))
-                directed_edges.append((j, i, weight))
-
-    # Apply Tarjan's algorithm on the directed edges
-    index = 0
-    stack = []
-    low_link = [float('inf')] * g.n
-    index_map = [None] * g.n
-    on_stack = [False] * g.n
-
-    def strongconnect(v):
-        nonlocal index
-        index_map[v] = index
-        low_link[v] = index
-        index += 1
-        stack.append(v)
-        on_stack[v] = True
-
-        for u, _, _ in directed_edges:
-            if u == v:
-                if index_map[u] is None:
-                    strongconnect(u)
-                if on_stack[u]:
-                    low_link[v] = min(low_link[v], low_link[u])
-
-        if low_link[v] == index_map[v]:
-            component = set()
-            while True:
-                u = stack.pop()
-                on_stack[u] = False
-                component.add(u)
-                if u == v:
-                    break
-            for u in component:
-                d.make_set(u)
-            for u in component:
-                for v in component:
-                    if u != v and (u, v) in directed_edges:
-                        d.union(u, v)
-
-    for v in range(g.n):
-        if index_map[v] is None:
-            strongconnect(v)
-
+    # your code here
+    
+    filteredges = []
+    
+    for edge in g.edges:
+        i,j, wij = edge
+        if wij <= W:
+            filteredges.append(edge)     
+    print(filteredges)
+    
+    for edges in filteredges:
+        i, j ,wij = edges
+#         print(edge)
+        if d.parents[i] == None:
+            d.make_set(i)
+        if d.parents[j] == None:
+            d.make_set(j)
+        d.union(i, j)
+    
+    print(d.parents)
+    
+    for i in range(0, len(d.parents)):
+        if d.parents[i] == None:
+            d.parents[i] = i
+    print(d.parents)
+    
+    
     
     # extract a set of sets from d
     return d.dictionary_of_sets()    
 
 
-# In[20]:
+# In[41]:
 
 
 g3 = UndirectedGraph(8)
@@ -304,7 +275,7 @@ print('All tests passed: 10 points')
 # You code simply returns a list of edges with edge weights  as a tuple $(i,j, wij)$ that are part of the MST along with the total weight of the MST.
 # 
 
-# In[ ]:
+# In[67]:
 
 
 def compute_mst(g):
@@ -314,13 +285,39 @@ def compute_mst(g):
     d = DisjointForests(g.n)
     mst_edges = []
     g.sort_edges()
+
+    total_weight = 0
+
+    
+    
     # your code here
     
+    # Iterate through the sorted edges.
+    for edge in g.edges:
+        i, j, wij = edge
+#         print(d.parents)
+#         print(i, d.parents[j])
+        if d.parents[i] == None:
+            d.make_set(i)
+        if d.parents[j] == None:
+            d.make_set(j)
+        
+        # Check if adding this edge creates a cycle.
+        if d.find(i) != d.find(j):
+            # Add the edge to the MST.
+            mst_edges.append(edge)
+            total_weight += wij
+            # Union the sets of vertices i and j.
+            d.union(i, j)
+    
+    return (mst_edges, total_weight)
+
+    
     
     
 
 
-# In[ ]:
+# In[68]:
 
 
 g3 = UndirectedGraph(8)
