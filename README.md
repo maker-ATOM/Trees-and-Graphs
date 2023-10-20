@@ -6,8 +6,8 @@ Playlist status
 13
 14
 
-18
-19
+
+
 
 21
 22
@@ -45,6 +45,14 @@ Playlist status
 <p align="center">
 	<img src="images/queue.png" width="730" height="304"/>
 </p>
+
+<p align="center">
+	<b>Priority Queue</b>
+
+<p align="center">
+	<b>Heaps</b>
+
+
 
 Content:
     - Description
@@ -825,8 +833,8 @@ Prim's Algorithm
         mstEdges = [null, ..., null] # size m 
         addEdges (s)
 
-        while (!pq.isEmpty() and edgeCount = m): pq.dequeue()
-            edge
+        while (!pq.isEmpty() and edgeCount = m): 
+            edge = pq.dequeue()
             nodeIndex = edge.to
 
         if visited [nodeIndex]: continue
@@ -842,6 +850,9 @@ Prim's Algorithm
 
 
     Complexity: O(E * log(E))
+
+On a lower level we can sort the the list containing edges instead of implementing PQ which does
+increases the run time of the algorithm.
 
 Eager Prim's
     Tracks (node, edge) key value pairs that can easily be updated and polled to determine the next best edge to add in MST.
@@ -989,7 +1000,76 @@ for (i = 0; i < V-1; i = i + 1):
 Complexity: O((E+V)log(V)
 ```
 ```python
-Fails on negative edges
+Greedy Algorithm
+Fails on negative edges.
+That is once a node is visited its optimal distance cannot be improved unlike Bellman Ford 
+
+Single Source Shortest path Algorithm
+
+On a higher level,
+Maintain a 'dist' array where the distance to every node is positive infinity. 
+Mark the distance to the start node 's' to be 0.
+Maintain a PQ of key-value pairs of (node index, distance) pairs which 
+tell you which node to visit next based on sorted min value.
+Insert (s, 0) into the PQ and loop while PQ is not empty pulling out 
+the next most promising (node index, distance) pair.
+Iterate over all edges outwards from the current node and 
+relax each edge appending a new (node index, distance) key-value pair to the PQ for every relaxation.
+
+PseudoCode:
+
+# Runs Dijkstra's algorithm and returns an array that contains 
+# the shortest distance to every node from the start node s. 
+# g - adjacency list of weighted graph
+# n - the number of nodes in the graph
+# s - the index of the starting node (0 ≤ s < n)
+
+function dijkstra (g, n, s):
+    vis = [false, false, ..., false] # size n
+    dist = [∞, ∞, ... ∞, ∞] # size n
+    dist[s] = 0
+    pq empty priority queue 
+    pq.insert((s, 0))
+
+    while pq.size() != 0:
+        index, minValue = pq.poll() 
+        vis [index] = true
+        for (edge g[index]):
+            if vis [edge.to]: continue
+            newDist = dist[index] + edge.cost 
+            if newDist< dist[edge.to]: 
+                dist[edge.to] = newDist 
+                pq.insert((edge.to, newDist))
+    return dist
+
+Optimization: Do not consider key value pair if the current distance to node is less than the one in ket value pair.
+
+    while pq.size() != 0:
+        index, minValue = pq.poll() 
+        vis [index] = true
+        if dist[index] minValue: continue
+        for (edge : g[index]):
+            if vis [edge.to]: continue
+            newDist = dist[index] + edge.cost 
+            if newDist< dist[edge.to]: 
+                dist[edge.to] = newDist 
+                pq.insert((edge.to, newDist))
+    return dist
+
+To store the path we can set the parent of the node while relaxing the edges.
+
+If we want to reach a destination node we can stop once destination is visited.
+This distance will not change even if visit other nodes in the graph based upon 
+the property of dijkstra.
+
+Our current lazy implementation of Dijkstra's inserts duplicate key-value pairs 
+(keys being the node index and the value being the shortest distance to get to that node) in our PQ 
+because it's more efficient to insert a new key-value pair in O(log(n)) than it is to update an existing key's value in O(n).
+This approach is inefficient for dense graphs because we end up with 
+several stale outdated key-value pairs in our PQ. The eager version of Dijkstra's avoids 
+duplicate key-value pairs and supports efficient value updates in O(log(n)) by 
+using an Indexed Priority Queue (IPQ)
+
 ```
 
 
