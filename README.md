@@ -428,7 +428,7 @@ If a graph is denoted by Adjacency 2D matrix the reverse of it is simply the tra
 
 ## Traversal
 
-**Depth First Search**
+#### Depth First Search
 
 
 Plunges depth first into into a graph without regard for which edge it take next
@@ -467,13 +467,13 @@ function dfs(at):
 dfs(start_node)
 ```
 
-Complexity: O(V+E)
+**Complexity: O(V+E)**
 
 
 [Visualization](https://www.youtube.com/watch?v=NUgMa5coCoE)
 
 
-**Breadth First Search**
+#### Breadth First Search
 
 
 Explores the neighbor nodes first, before moving to the next level of neighbors.
@@ -519,7 +519,7 @@ return prev
 
 ```
 
-Complexity: O(V+E)
+**Complexity: O(V+E)**
 
 
 [Visualization](https://www.youtube.com/watch?v=x-VTfcmrLEQ)
@@ -532,6 +532,7 @@ Each jump from a node to another results in increment in time.
 
 
 **Askable questions:**
+
 - Is the graph directed or undirected?
 - Are the edges of the graph weighted?
 - Is  the graph dense with edges?
@@ -676,7 +677,7 @@ function find Components():
 ```
 
 
-**Kahn's Algorithm**
+#### Kahn's Algorithm
 Detects if a graphs contains a cycle or not. 
 
 Repeatedly remove nodes without any dependencies from the graph and add them to the topological ordering.<br>
@@ -719,7 +720,7 @@ Dependencies can be found out from the Adjacency list or matrix.
 
 ```
 
-Complexity: O(V+E)
+**Complexity: O(V+E)**
 
 
 ### Strongly connected components (SCC)
@@ -742,7 +743,7 @@ But this depends on the start node of DFS which is random.
 
 This is where tarjan's algo come in handy.
 
-**Tarjan's Algorithm:**
+#### Tarjan's Algorithm:
 
 Mark the id of each node as unvisited.<br>
 Start DFS. Upon visiting a node assign it an id and a low-link value. <br>
@@ -787,7 +788,7 @@ Properties:<br>
 SCC can also be figured out by performing DFS on the reverse graph and generating a list of completed cycles.
 
 
-Complexity: linear O(V+E)
+**Complexity: linear O(V+E)**
 
 ### Amortized Analysis
 
@@ -815,7 +816,7 @@ Example: nodes can be servers and weighted edges can be speed of transmission.
 
 
 
-**Prim's Algorithm**
+#### Prim's Algorithm
 
 Greedy Algorithm. <br>
 Difficult to find MST on disconnected components using this algo.<br>
@@ -874,13 +875,13 @@ function lazy Prims (s = 0):
     return (mstCost, mstEdges)
 ```
 
-Complexity: O(E * log(E))
+**Complexity: O(E * log(E))**
 
 On a lower level we can sort the the list containing edges instead of implementing PQ which does
 increases the run time of the algorithm.
 
 
-**Eager Prim's**
+#### Eager Prim's
 
 Tracks (node, edge) key value pairs that can easily be updated and polled to determine the next best edge to add in MST.<br>
 Instead of adding edges to the PQ as we iterate over the edges of node, we are going to update 
@@ -930,12 +931,12 @@ function relaxEdgesAtNode(currentNodeIndex):
 
 ```
 
-Complexity: O(E * log(V))
+**Complexity: O(E * log(V))**
 
 
 
 
-**Kruskal's Algorithm**
+#### Kruskal's Algorithm
 
 Greedy<br>
 Intermediate state is not a tree but a forest which we try to connect at the end.
@@ -943,7 +944,7 @@ Intermediate state is not a tree but a forest which we try to connect at the end
 Sort the edges in ascending order.<br>
 If an edge connects two different trees in an forest add it and make a single tree. 
 
-Complexitiy:  O(E * log(V))
+**Complexitiy:  O(E * log(V))**
 
 
 ### Shortest Path
@@ -968,16 +969,14 @@ Single Source Shortest Path => shortest path from source to any other node.
 
 At the basic level shortest path can be found out while performing **topological sort.**
 
-Complexity: O(V+E)
+**Complexity: O(V+E)**
 
-```python
 
-```
 
 #### Bellman Ford
 
 
-Complexity: O(EV)
+**Complexity: O(EV)**
 
 It is Single Source Shortest Path Algorithm.
 
@@ -1034,7 +1033,7 @@ for (i = 0; i < V-1; i = i + 1):
 #### Dijkstra
 
 
-Complexity: O((E+V)log(V)
+**Complexity: O((E+V)log(V)**
 
 
 Greedy Algorithm
@@ -1081,7 +1080,8 @@ function dijkstra (g, n, s):
                 pq.insert((edge.to, newDist))
     return dist
 
-Optimization: Do not consider key value pair if the current distance to node is less than the one in ket value pair.
+Optimization: Do not consider key value pair if the current distance to node 
+is less than the one in ket value pair.
 
     while pq.size() != 0:
         index, minValue = pq.poll() 
@@ -1112,7 +1112,6 @@ using an Indexed Priority Queue (IPQ)
 
 #### Floyd-Warshall
 
-
 All-Pair Shortest Path Algorithm
 
 Complexity : O(V^3)
@@ -1122,6 +1121,11 @@ Optimal way to represent graph is using 2D adjacency matrix.
 Builds up all intermediate routes between nodes i and j.
 
 Easily implemented using Dynamic Programming.
+
+We maintain a D matrix which stores the distance from a node to another node. <br>
+We also maintain a N matrix which stores the next node in the path for those elements.
+
+At the noob level we can run Dijkstras on every node and fill up the matrices
 
 
 ### Shortest part on Directed Acyclic Graph
@@ -1133,14 +1137,14 @@ Modified Bellman Ford
     First topological sort the graph.<br>
     Relax edges according to top sort.
 
-    Complexity: V + E
+**Complexity: V + E**
 
 
 ### Shortest Path when all edges are equal in weight
 
 
 Using BFS<br>
-    Complexity: V + E
+    **Complexity: V + E**
 
 
 
