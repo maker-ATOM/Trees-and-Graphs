@@ -50,7 +50,7 @@ Playlist status
             </ol>
         <li><a href="#Skip-List">Skip List</a></li>
         <li><a href="#Traversal">Traversal</a></li>
-        <li><a href="#Operations">operations</a></li>
+        <li><a href="#Operations">Operations</a></li>
         <li><a href="#Common-Trees-Problems">Common trees Problems</a></li>
     </ol>
     <li><a href="#Using-this-Project">Using this Project</a></li>
@@ -246,7 +246,8 @@ Start from top left elements go right until required element is greater that cur
 Move down if next element is greater that required element, repeat the process.
 
 When a element is to be inserted it is first added in the bottom most layer then a coin is tossed
-to decide whether the node is to be added in the top layer or not, making it a probabilistic data structure. 
+to decide whether the node is to be added in the top layer or not, making it a probabilistic 
+data structure. 
 ```
 
 ## Traversal
@@ -286,7 +287,8 @@ Traverse all the nodes of a lower level before moving to any of the nodes of a h
 
 ```python
 Naive approach
-    Find height of tree. Then for each level, run a recursive function by maintaining current height. 
+    Find height of tree. 
+    Then for each level, run a recursive function by maintaining current height. 
     Whenever the level of a node matches, use that node.
 
 Queue
@@ -364,9 +366,8 @@ function lowestCommonAncestor(root, p, q):
 	<b>Undirected graphs</b>
 </p>
 
-```python
+
 Edges have no orientation (direction)
-```
 
 
 <p align="center">
@@ -378,9 +379,9 @@ Edges have no orientation (direction)
 	<b>Directed graphs</b>
 </p>
 
-```python
+
 Edges have orientation (direction). Traversal happens in the indicated direction only and not the other way around.
-```
+
 
 
 <p align="center">
@@ -392,9 +393,9 @@ Edges have orientation (direction). Traversal happens in the indicated direction
 </p>
 
 
-```python
+
 Where edges have weights associated which connects nodes.
-```
+
 
 
 <p align="center">
@@ -406,9 +407,8 @@ Where edges have weights associated which connects nodes.
 </p>
 
 
-```python
+
 Directed graphs with no cycles.
-```
 
 
 <p align="center">
@@ -416,6 +416,7 @@ Directed graphs with no cycles.
 </p>
 
 **Storage methods**
+
 ```python
 - Adjacency 2D matrix.
 - Adjacency Lists.
@@ -429,7 +430,7 @@ If a graph is denoted by Adjacency 2D matrix the reverse of it is simply the tra
 
 **Depth First Search**
 
-```python
+
 Plunges depth first into into a graph without regard for which edge it take next
 until it cannot go further at which point it backtracks and continues.
 
@@ -437,18 +438,19 @@ We do not revisit a node. This happens in case of cycle, so
 So we backtrack to the cycle origin and continue.
 
 Usage:
-    - Used to find number of components within a graph by assigning ids to each group.
-    - Compute a graphs minimum spanning tree
-    - Detect and find cycles
-    - Check if a graph is a bipartite
-    - Find strongly connected components.
-    - Topologically sort the nodes of a graph.
-    - Find bridges and articulation points.
-    - Find augmented paths in a flow network.
-    - Generate mazes.
+- Used to find number of components within a graph by assigning ids to each group.
+- Compute a graphs minimum spanning tree
+- Detect and find cycles
+- Check if a graph is a bipartite
+- Find strongly connected components.
+- Topologically sort the nodes of a graph.
+- Find bridges and articulation points.
+- Find augmented paths in a flow network.
+- Generate mazes.
 
 Utilizes recursive method to traverse the neighbor node of the current node.
 
+```python
 PseudoCode:
 
 # Global or class scope variables n = number of nodes in the graph
@@ -463,28 +465,26 @@ function dfs(at):
 
 # Start DFS at node zero start_node = 0
 dfs(start_node)
-
-
 ```
 
-```python
 Complexity: O(V+E)
-```
+
 
 [Visualization](https://www.youtube.com/watch?v=NUgMa5coCoE)
 
 
 **Breadth First Search**
 
-```python
+
 Explores the neighbor nodes first, before moving to the next level of neighbors.
 Utilizes queue to store the node yet to be visited.
 
 usage:
-    - Shortest path on unweighted graphs.
+- Shortest path on unweighted graphs.
 
 Utilizes queue to store the next node should be visited next.
 
+```python
 PseudoCode:
 # Global/class scope variables 
 n = number of nodes in the graph
@@ -519,9 +519,8 @@ return prev
 
 ```
 
-```python
 Complexity: O(V+E)
-```
+
 
 [Visualization](https://www.youtube.com/watch?v=x-VTfcmrLEQ)
 
@@ -531,13 +530,13 @@ Each jump from a node to another results in increment in time.
 
 ## Common Graph Theory Problems
 
-```python
-Askable questions:
+
+**Askable questions:**
 - Is the graph directed or undirected?
 - Are the edges of the graph weighted?
 - Is  the graph dense with edges?
 - What data structure should I use for representation of matrix?
-```
+
 
 ```python
 Shortest path from Node A to Node B. in a weighted graph.
@@ -553,7 +552,7 @@ Negative cycles
 Strongly Connected Components
 - Algos: Tarjans' and Kosaraju's
 
-**Traveling Sales Person**
+Traveling Sales Person
 - Algos: Held-Karp, branch and bound.
 
 Bridges
@@ -566,21 +565,22 @@ Network Flow
 
 Identification of cycles
 ```
-**BFS on Grids**
+### BFS on Grids
 
-```python
+
 A grid can be easily converted to a Adjacency list.
-    - LAbel each cell with numbers, each cell denotes a node.
-    - Neighboring cells are ones connected up, down, left and right
+- LAbel each cell with numbers, each cell denotes a node.
+- Neighboring cells are ones connected up, down, left and right
 
 A grid if represented using a 2D matrix (x,y) in that senario we do not need to
 generate a Adjacency list, adjacent elements are can evaluated by adding a direction vector.
-and then checking if the generated cell is a valid cell or not.
+and then checking if the generated cell is a valid cell or not.<br>
 If it is enqueue it for next iteration and mark it as visited.
 
 If the path is to be drawn from start to end we need to store 
 the previously visited node for each current node.
 
+```python
 PseudoCode:
 
 # Global/class scope variables
@@ -626,63 +626,68 @@ return -1
 
 ```
 
-**Topological Sort**
+### Topological Sort
 
 <p align="center">
 	<img src="images/topsort.png" width="890" height="271"/>
 </p>
 
-```python
+
 A topological ordering is an ordering of the nodes in a directed edge from node A to B, 
 where node A appears before node B in the ordering.
 
 Topological ordering are NOT unique. 
 
-A graph with cycle cannot have a valid ordering.
-Only Directed Acyclic Graphs have valid topological ordering.
-How to find if a graph contains cycle or not?
+A graph with cycle cannot have a valid ordering.<br>
+Only Directed Acyclic Graphs have valid topological ordering.<br>
+How to find if a graph contains cycle or not?<br>
     Tarjan's strongly connected components.
 
 All trees have topological ordering which is the BFS traversal of the tree.
 
-Using DFS:
-    Pick an unvisited node.
-    Beginning with the selected node, da a DFS exploring only unvisited nodes.
-    On recursive callback of DFS, add the current node to the topological ordering in reverse order.
 
-    PseudoCode:
-    # Global or class scope variables 
-    n = number of nodes in the graph 
-    g = adjacency list representing graph 
-    count = 0
-    components = empty integer array # size n 
-    visited = [false, ..., false] # size n
-    
-    function find Components(): 
-        for (i = 0; i < n; i++): 
-            if !visited[i]:
-                count++ 
-                dfs(i)
-        return (count, components)
+**Using DFS:**
+Pick an unvisited node.<br>
+Beginning with the selected node, da a DFS exploring only unvisited nodes.<br>
+On recursive callback of DFS, add the current node to the topological ordering in reverse order.
 
-        function dfs(at):
-            visited [at] = true 
-            components [at] = count 
-            for (next g[at]): 
-                if !visited [next]: 
-                    dfs(next)
+```python
+PseudoCode:
+# Global or class scope variables 
+n = number of nodes in the graph 
+g = adjacency list representing graph 
+count = 0
+components = empty integer array # size n 
+visited = [false, ..., false] # size n
 
-Kahn's Algorithm
-    Detects if a graphs contains a cycle or not. 
+function find Components(): 
+    for (i = 0; i < n; i++): 
+        if !visited[i]:
+            count++ 
+            dfs(i)
+    return (count, components)
 
-    Repeatedly remove nodes without any dependencies from the graph and add them to the topological ordering.
-    As nodes without dependencies (and their outgoing edges) are removed from the graph, 
-    new nodes without dependencies should become free.
-    We repeat removing nodes without dependencies from the graph until all nodes are processed, 
-    or a cycle is discovered. 
+    function dfs(at):
+        visited [at] = true 
+        components [at] = count 
+        for (next g[at]): 
+            if !visited [next]: 
+                dfs(next)
+```
 
-    Dependencies can be found out from the Adjacency list or matrix.
 
+**Kahn's Algorithm**
+Detects if a graphs contains a cycle or not. 
+
+Repeatedly remove nodes without any dependencies from the graph and add them to the topological ordering.<br>
+As nodes without dependencies (and their outgoing edges) are removed from the graph, 
+new nodes without dependencies should become free.<br>
+We repeat removing nodes without dependencies from the graph until all nodes are processed, 
+or a cycle is discovered. 
+
+Dependencies can be found out from the Adjacency list or matrix.
+
+```python
     PseudoCode:
 
     #`g` is a directed acyclic graph represented as an adjacency list. 
@@ -714,39 +719,41 @@ Kahn's Algorithm
 
 ```
 
-```python
 Complexity: O(V+E)
-```
 
-**Strongly connected components (SCC)**
+
+### Strongly connected components (SCC)
 
 <p align="center">
 	<img src="images/scc.png" width="987" height="362"/>
 </p>
 
-```python
+
 Strongly connected components can thought of as self-contained cycles within a directed graph where
-every vertex in a given cycle can reach every other vertex of the same cycle. 
+every vertex in a given cycle can reach every other vertex of the same cycle.<br>
 More or else it is a group of nodes within the graph where each node can be reached from every other node.
 
-Low-Link Value:
-    The low-link value of a node is the smallest (lowest) node id reachable from that node when doing a DFS (including itself)
+**Low-Link Value:**
+
+The low-link value of a node is the smallest (lowest) node id reachable from that node when doing a DFS (including itself)
 When assigned low link values to the nodes traversed in DFS in turns out 
-to be that all strongly connected components have same low link value.
+to be that all strongly connected components have same low link value.<br>
 But this depends on the start node of DFS which is random.
 
 This is where tarjan's algo come in handy.
 
-Tarjan's Algorithm:
-    Mark the id of each node as unvisited.
-    Start DFS. Upon visiting a node assign it an id and a low-link value. 
-        Also mark current nodes as visited and add them to a seen stack.
-    On DFS callback if the prev node is on stack then min the current node's low link value with the last node's low link value. 
-        (This allows low link values to propagate through cycles)
-    After visiting all neighbors, if the current node started a connected component
-        (a node starts a connected component if its id is equal to its low link value) 
-            then pop nodes off stack until current node is reached.
+**Tarjan's Algorithm:**
 
+Mark the id of each node as unvisited.<br>
+Start DFS. Upon visiting a node assign it an id and a low-link value. <br>
+    Also mark current nodes as visited and add them to a seen stack.<br>
+On DFS callback if the prev node is on stack then min the current node's low link value with the last node's low link value. <br>
+    (This allows low link values to propagate through cycles)<br>
+After visiting all neighbors, if the current node started a connected component
+    (a node starts a connected component if its id is equal to its low link value) 
+        then pop nodes off stack until current node is reached.
+
+```python
     PseudoCode:
 
     UNVISITED = −1
@@ -769,180 +776,185 @@ Tarjan's Algorithm:
             if(ids [i] ==  UNVISITED):
                 dfs(i)
     return low`
-
+```
 
 Maximal strongly connected components are ones which cannot be extended into SCC by adding other nodes.
-Properties:
-    Intersection of all MSCC is a null set.
-    If we combine all SCC into a single node then the super-graph generated is a directed acyclic graph
+
+Properties:<br>
+    Intersection of all MSCC is a null set.<br>
+    If we combine all SCC into a single node then the super-graph generated is a directed acyclic graph<br>
 
 SCC can also be figured out by performing DFS on the reverse graph and generating a list of completed cycles.
 
-```
 
-```python
 Complexity: linear O(V+E)
-```
 
-**Amortized Analysis**
+### Amortized Analysis
 
 ```python
 Technique for analyzing cost of operations.
 ```
 
-**Minimal Spanning Tree (MST)**
+### Minimal Spanning Tree (MST)
 
 <p align="center">
 	<img src="images/mst.png" width="840" height="483"/>
 </p>
 
-```python
+
 A minimum spanning tree is a subset of the edges in the graph which connects all vertices together, 
-without creating any cycle while minimizing the total edge cost.
-A graph can have multiple MST with same costs.
-MST are not unique.
-All the nodes must be connected to form a spanning tree.
-Can be used to find the minimum cost required to reach from one node to other.
-Technically we drop edges with higher weights.
+without creating any cycle while minimizing the total edge cost.<br>
+A graph can have multiple MST with same costs.<br>
+MST are not unique.<br>
+All the nodes must be connected to form a spanning tree.<br>
+Can be used to find the minimum cost required to reach from one node to other.<br>
+Technically we drop edges with higher weights.<br>
 
 Example: nodes can be servers and weighted edges can be speed of transmission.
 
-Prim's Algorithm
-    Greedy Algorithm
-    Difficult to find MST on disconnected components using this algo.
 
-    Maintain a min Priority Queue (PQ) that sorts edges based on min edge cost. 
-    This will be used to determine the next node to visit and the edge used to get there.
-    Start the algorithm on any node s. Mark s as visited and iterate over all edges of s, adding them to the PQ.
-    While the PQ is not empty and a MST has not been formed, dequeue the next cheapest edge from the PQ.
-    If the dequeued edge is outdated (meaning the node it points to has already been visited) then skip it and poll again.
-    Otherwise, mark the current node as visited and add the selected edge to the MST.
-    Iterate over the new current node's edges and add all its edges to the PQ. 
-    Do not add edges to the PQ which point to already visited nodes.
 
-    The algorithm can be stopped when number of edges are one less than number of nodes as this is one of the definition of trees.
 
-    Usually for this algo the graph is represented as adjacency list with all undirected edges as
-    two directed edges. As the graph becomes dense adjacency matrix is preferred over list.
+**Prim's Algorithm**
 
-    As an upgrade we can avoid adding edges in the PQ which can become stale.
+Greedy Algorithm. <br>
+Difficult to find MST on disconnected components using this algo.<br>
 
-    PseudoCode:
+Maintain a min Priority Queue (PQ) that sorts edges based on min edge cost. <br>
+This will be used to determine the next node to visit and the edge used to get there.<br>
+Start the algorithm on any node s. Mark s as visited and iterate over all edges of s, adding them to the PQ.<br>
+While the PQ is not empty and a MST has not been formed, dequeue the next cheapest edge from the PQ.<br>
+If the dequeued edge is outdated (meaning the node it points to has already been visited) then skip it and poll again.<br>
+Otherwise, mark the current node as visited and add the selected edge to the MST.<br>
+Iterate over the new current node's edges and add all its edges to the PQ. <br>
+Do not add edges to the PQ which point to already visited nodes.<br>
 
-    n = ... # Number of nodes in the graph.
-    pq = ...    # PQ data structure; stores edge objects consisting of 
-                # {start node, end node, edge cost} tuples. The PQ sorts # edges based on min edge cost.
-    g = ...     # Graph representing an adjacency list of weighted edges. 
-                # Each undirected edge is represented as two directed # edges in g. For especially dense graphs, prefer using 
-                # an adjacency matrix instead of an adjacency list to 
-                # improve performance.
+The algorithm can be stopped when number of edges are one less than number of nodes as this is one of the definition of trees.
+
+Usually for this algo the graph is represented as adjacency list with all undirected edges as
+two directed edges. As the graph becomes dense adjacency matrix is preferred over list.
+
+As an upgrade we can avoid adding edges in the PQ which can become stale.
+
+
+```python
+PseudoCode:
+
+n = ... # Number of nodes in the graph.
+pq = ...    # PQ data structure; stores edge objects consisting of 
+            # {start node, end node, edge cost} tuples. The PQ sorts # edges based on min edge cost.
+g = ...     # Graph representing an adjacency list of weighted edges. 
+            # Each undirected edge is represented as two directed # edges in g. For especially dense graphs, prefer using 
+            # an adjacency matrix instead of an adjacency list to 
+            # improve performance.
+
+visited = [false,..., false]    # visited[i] tracks whether node i 
+                                # has been visited; size n
+
+#s - the index of the starting node (0 < s < n) 
+function lazy Prims (s = 0):
+    m = n = 1 # number of edges in MST 
+    edgeCount, mstCost = 0, 0
+    mstEdges = [null, ..., null] # size m 
+    addEdges (s)
+
+    while (!pq.isEmpty() and edgeCount = m): 
+        edge = pq.dequeue()
+        nodeIndex = edge.to
+
+    if visited [nodeIndex]: continue
     
-    visited = [false,..., false]    # visited[i] tracks whether node i 
-                                    # has been visited; size n
+    mstEdges [edgeCount++] = edge
+    mstCost += edge.cost
 
-    #s - the index of the starting node (0 < s < n) 
-    function lazy Prims (s = 0):
-        m = n = 1 # number of edges in MST 
-        edgeCount, mstCost = 0, 0
-        mstEdges = [null, ..., null] # size m 
-        addEdges (s)
+    addEdges (nodeIndex)
 
-        while (!pq.isEmpty() and edgeCount = m): 
-            edge = pq.dequeue()
-            nodeIndex = edge.to
+    if edgeCount != m:
+        return (null, null) # No MST exists!
+    return (mstCost, mstEdges)
+```
 
-        if visited [nodeIndex]: continue
-        
-        mstEdges [edgeCount++] = edge
-        mstCost += edge.cost
-
-        addEdges (nodeIndex)
-
-        if edgeCount != m:
-            return (null, null) # No MST exists!
-        return (mstCost, mstEdges)
-
-
-    Complexity: O(E * log(E))
+Complexity: O(E * log(E))
 
 On a lower level we can sort the the list containing edges instead of implementing PQ which does
 increases the run time of the algorithm.
 
-Eager Prim's
-    Tracks (node, edge) key value pairs that can easily be updated and polled to determine the next best edge to add in MST.
-    Instead of adding edges to the PQ as we iterate over the edges of node, we are going to update 
-    the destination node's most promising incoming edge.
 
-    PseudoCode:
+**Eager Prim's**
 
-    #s the index of the starting node (0 < s < n) 
-    function eager Prims (s = 0):
-        m = n − 1 # number of edges in MST 
-        edgeCount, mstCost = 0, 0
-        mstEdges = [null,null] # size m
+Tracks (node, edge) key value pairs that can easily be updated and polled to determine the next best edge to add in MST.<br>
+Instead of adding edges to the PQ as we iterate over the edges of node, we are going to update 
+the destination node's most promising incoming edge.
 
-        relaxEdgesAtNode(s)
+```python
+PseudoCode:
+#s the index of the starting node (0 < s < n) 
+function eager Prims (s = 0):
+    m = n − 1 # number of edges in MST 
+    edgeCount, mstCost = 0, 0
+    mstEdges = [null,null] # size m
+
+    relaxEdgesAtNode(s)
+    
+    while (!ipq.isEmpty() and edgeCount != m):
+        # Extract the next best (node index, edge object) 
+        # pair from the IPQ
+        destNodeIndex, edge = ipq.dequeue()
         
-        while (!ipq.isEmpty() and edgeCount != m):
-            # Extract the next best (node index, edge object) 
-            # pair from the IPQ
-            destNodeIndex, edge = ipq.dequeue()
-            
-            mstEdges [edgeCount++] = edge 
-            mstCost += edge.cost
-            
-            relaxEdgesAtNode(destNodeIndex)
-        if edgeCount != m:
-            return (null, null) # No MST exists!
-        return (mstCost, mstEdges)
-
-
-    function relaxEdgesAtNode(currentNodeIndex): 
-        # Mark the current node as visited.
-        visited [currentNodeIndex] = true
+        mstEdges [edgeCount++] = edge 
+        mstCost += edge.cost
         
-        # Get all the edges going outwards from the current node. edges g[currentNodeIndex]
-        for (edge : edges):
-            destNodeIndex = edge.to
+        relaxEdgesAtNode(destNodeIndex)
+    if edgeCount != m:
+        return (null, null) # No MST exists!
+    return (mstCost, mstEdges)
+
+function relaxEdgesAtNode(currentNodeIndex): 
+    # Mark the current node as visited.
+    visited [currentNodeIndex] = true
+    
+    # Get all the edges going outwards from the current node. edges g[currentNodeIndex]
+    for (edge : edges):
+        destNodeIndex = edge.to
+        
+        # Skip edges pointing to already visited nodes. 
+        if visited [destNodeIndex]: continue
             
-            # Skip edges pointing to already visited nodes. 
-            if visited [destNodeIndex]: continue
-                
-            if !ipq.contains (destNodeIndex): 
-                #Insert edge for the first time. 
-                ipq.insert(destNodeIndex, edge)
-            else:
-            # Try and improve the cheapest edge at destNodeIndex with 
-            # # the current edge in the IPQ.
-            ipq.decreaseKey(destNodeIndex, edge)
+        if !ipq.contains (destNodeIndex): 
+            #Insert edge for the first time. 
+            ipq.insert(destNodeIndex, edge)
+        else:
+        # Try and improve the cheapest edge at destNodeIndex with 
+        # # the current edge in the IPQ.
+        ipq.decreaseKey(destNodeIndex, edge)
 
-    Complexity: O(E * log(V))
-
-Kruskal's Algorithm
-    Greedy
-    Intermediate state is not a tree but a forest which we try to connect at the end.
-
-    Sort the edges in ascending order.
-    If an edge connects two different trees in an forest add it and make a single tree. 
-
-    Complexitiy:  O(E * log(V))
 ```
 
-<p align="center">
-	<b>Shortest Path</b>
-</p>
-<p align="center">
-	<img src="images/queue.png" width="730" height="304"/>
-</p>
+Complexity: O(E * log(V))
 
-**Shortest Path**
+
+
+
+**Kruskal's Algorithm**
+
+Greedy<br>
+Intermediate state is not a tree but a forest which we try to connect at the end.
+
+Sort the edges in ascending order.<br>
+If an edge connects two different trees in an forest add it and make a single tree. 
+
+Complexitiy:  O(E * log(V))
+
+
+### Shortest Path
+
+
 
 <p align="center">
 	<img src="images/comp.png" width="697" height="485"/>
 </p>
 
 
-```python
 Path consisting of least weight from source to destination.
 
 Shortest Path form a tree.
@@ -954,32 +966,23 @@ in that case the path can have -inf value as circling around the cycle is going 
 
 Single Source Shortest Path => shortest path from source to any other node.
 
-At the basic level shortest path can be found out while performing topological sort.
+At the basic level shortest path can be found out while performing **topological sort.**
 
 Complexity: O(V+E)
-```
-
-**Bellman Ford**
 
 ```python
+
+```
+
+#### Bellman Ford
+
+
 Complexity: O(EV)
-```
 
-```python
 It is Single Source Shortest Path Algorithm.
 
 Can be usd to detect negative cycles anf determine where they occur.
 
-A array D stores the shortest path weights.
-
-Algorithm:
-    Set every element in D to inf as initially it is unknown.
-    Set D[start_node] = 0 as distance from source to source is zero.
-    loop through all edges and 
-        if distance of edge_start + edge_weight < edge_end
-            edge_end = edge_start + edge_weight
-edge_end and edge_start are the current estimation to reach those nodes.
-this operation is called as edge relaxation.
 
 V - 1 iteration needs to be performed.
 
@@ -995,6 +998,19 @@ If shortest path is not inf then there exists a path from source to destination.
 
 For negative weight cycles after V - 1 iteration if there is any possibility even after V - 1 iteration of relaxation,
 then there exists a negative cycle within the graph.
+
+```python
+A array D stores the shortest path weights.
+
+Algorithm:
+    Set every element in D to inf as initially it is unknown.
+    Set D[start_node] = 0 as distance from source to source is zero.
+    loop through all edges and 
+        if distance of edge_start + edge_weight < edge_end
+            edge_end = edge_start + edge_weight
+            
+edge_end and edge_start are the current estimation to reach those nodes.
+this operation is called as edge relaxation.
 
 PseudoCode:
 
@@ -1015,18 +1031,19 @@ for (i = 0; i < V-1; i = i + 1):
             D[edge.to] = −∞
 ```
 
-**Dijkstra**
+#### Dijkstra
 
-```python
+
 Complexity: O((E+V)log(V)
-```
-```python
+
+
 Greedy Algorithm
 Fails on negative edges.
 That is once a node is visited its optimal distance cannot be improved unlike Bellman Ford 
 
 Single Source Shortest path Algorithm
 
+```python
 On a higher level,
 Maintain a 'dist' array where the distance to every node is positive infinity. 
 Mark the distance to the start node 's' to be 0.
@@ -1035,7 +1052,8 @@ tell you which node to visit next based on sorted min value.
 Insert (s, 0) into the PQ and loop while PQ is not empty pulling out 
 the next most promising (node index, distance) pair.
 Iterate over all edges outwards from the current node and 
-relax each edge appending a new (node index, distance) key-value pair to the PQ for every relaxation.
+relax each edge appending a new (node index, distance) key-value pair to the 
+PQ for every relaxation.
 
 PseudoCode:
 
@@ -1076,25 +1094,25 @@ Optimization: Do not consider key value pair if the current distance to node is 
                 dist[edge.to] = newDist 
                 pq.insert((edge.to, newDist))
     return dist
+```
 
 To store the path we can set the parent of the node while relaxing the edges.
 
-If we want to reach a destination node we can stop once destination is visited.
+If we want to reach a destination node we can stop once destination is visited.<br>
 This distance will not change even if visit other nodes in the graph based upon 
 the property of dijkstra.
 
 Our current lazy implementation of Dijkstra's inserts duplicate key-value pairs 
 (keys being the node index and the value being the shortest distance to get to that node) in our PQ 
-because it's more efficient to insert a new key-value pair in O(log(n)) than it is to update an existing key's value in O(n).
+because it's more efficient to insert a new key-value pair in O(log(n)) than it is to update an existing key's value in O(n).<br>
 This approach is inefficient for dense graphs because we end up with 
 several stale outdated key-value pairs in our PQ. The eager version of Dijkstra's avoids 
 duplicate key-value pairs and supports efficient value updates in O(log(n)) by 
 using an Indexed Priority Queue (IPQ)
-```
 
-**Floyd-Warshall**
+#### Floyd-Warshall
 
-```python
+
 All-Pair Shortest Path Algorithm
 
 Complexity : O(V^3)
@@ -1104,26 +1122,26 @@ Optimal way to represent graph is using 2D adjacency matrix.
 Builds up all intermediate routes between nodes i and j.
 
 Easily implemented using Dynamic Programming.
-```
 
-**Shortest part on Directed Acyclic Graph**
 
-```python
+### Shortest part on Directed Acyclic Graph
+
+
 Modified Bellman Ford
     Perform only one iteration of bellman ford
 
-    First topological sort the graph.
+    First topological sort the graph.<br>
     Relax edges according to top sort.
 
     Complexity: V + E
-```
 
-**Shortest Path when all edges are equal in weight**
 
-```python
-Using BFS
+### Shortest Path when all edges are equal in weight
+
+
+Using BFS<br>
     Complexity: V + E
-```
+
 
 
 ### Union Find Data Structure 
