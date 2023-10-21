@@ -53,9 +53,46 @@ Playlist status
         <li><a href="#Operations">Operations</a></li>
         <li><a href="#Common-Trees-Problems">Common trees Problems</a></li>
     </ol>
-    <li><a href="#Using-this-Project">Using this Project</a></li>
+    <li><a href="#Graphs">Graphs</a></li>
+        <ol>
+                <li><a href="#Traversal">Traversal</a></li>
+                <li><a href="#Common-graph-Problems">Common graph Problems</a></li>
+            <ol>
+                <li><a href="#BFS-on-Grid">BFS on Grid</a></li>
+                <li><a href="#Topological-Sort">Topological Sort</a></li>
+                <ul>
+                    <li><a href="#Kahn's-Algorithm">Kahn's Algorithm</a></li>
+                </ul>
+                <li><a href="#Strongly-connected-components">Strongly connected components</a></li>
+                <ul>
+                    <li><a href="#Tarjan's-Algorithm">Tarjan's Algorithm</a></li>
+                </ul>
+                <li><a href="#Spanning-Tree">Minimal Spanning Tree</a></li>
+                <ul>
+                    <li><a href="#Prim's Algorithm">Prim's Algorithm</a></li>
+                    <li><a href="#Eager Prim's">Eager Prim's Algorithm</a></li>
+                    <li><a href="#Kruskal's-Algorithm">Kruskal's Algorithm</a></li>
+                </ul>
+                <li><a href="#Shortest Path">Shortest Path</a></li>
+                <ul>
+                    <li><a href="#Bellman-Ford">Bellman Ford Algorithm</a></li>
+                    <li><a href="#Dijkstra">Dijkstra's Algorithm</a></li>
+                    <li><a href="#Floyd-Warshall">Floyd-Warshall's Algorithm</a></li>
+                    <li><a href="#Shortest-part-on-Directed-Acyclic-Graph">Shortest part on Directed Acyclic Graph</a></li>
+                    <li><a href="#Shortest-Path-when-all-edges-are-equal-in-weight">Shortest Path when all edges are equal in weight</a></li>
+                </ul>
+            </ol>
+                <li><a href="#Union-Find-Data-Structure">Union Find Data Structure</a></li>
+        </ol>
+                <li><a href="#Resource">Resource</a></li>
   </ol>
-</details>
+</details> 
+
+
+
+
+
+
 
 ## Perquisites
 
