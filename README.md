@@ -31,6 +31,33 @@ Playlist status
 42
 43
  -->
+ Content:
+- Description
+- Illustration
+- Complexity
+- PseudoCode
+
+ <details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#Perquisites">Perquisites</a></li>
+    <li><a href="#Trees">Trees</a></li>
+    <ol>
+        <li><a href="#Binary-Trees">Binary Trees</a></li>
+        <li><a href="#Self-Balancing-Trees">Self Balancing Trees</a></li>
+            <ol>
+                <li><a href="#Red-Black-Trees">Red Black Trees</a></li>
+            </ol>
+        <li><a href="#Skip-List">Skip List</a></li>
+        <li><a href="#Traversal">Traversal</a></li>
+        <li><a href="#Operations">operations</a></li>
+        <li><a href="#Common-Trees-Problems">Common trees Problems</a></li>
+    </ol>
+    <li><a href="#Using-this-Project">Using this Project</a></li>
+  </ol>
+</details>
+
+## Perquisites
 
 <p align="center">
 	<b>Stack</b>
@@ -54,11 +81,7 @@ Playlist status
 
 
 
-Content:
-    - Description
-    - Illustration
-    - Complexity
-    - PseudoCode
+
 
 # Trees
 
@@ -69,11 +92,10 @@ Content:
 	<img src="images/tree.png" width="754" height="275"/>
 </p>
 
-```python
+
 A tree is an undirected graph with no cycle.
 A connected graph with N nodes and N - 1 edges.
 
-```
 
 <p align="center">
 	<b>Rooting a Tree</b>
@@ -82,9 +104,8 @@ A connected graph with N nodes and N - 1 edges.
 	<img src="images/root.png" width="754" height="275"/>
 </p>
 
-```python
 Rooted Tree => A tree with a designated root node with preferred directional edges.
-```
+
 
 **Storage methods**
 
@@ -98,7 +119,8 @@ Adjacency List
 Adjacency Matrix
 
 Flattened array => preferred for binary trees
-    Where each node is assigned an index and the values are stored in an array with the indexes.
+    Where each node is assigned an index and the values are stored 
+    in an array with the indexes.
 
 Trees can be non-directional as well.
 ```
@@ -114,15 +136,10 @@ Trees can be non-directional as well.
 
 ```python
 Every Nodes has at most two child nodes.
-
 Leaf Node => Lowest node with the tree  (Node with no children)
-
 Height => Number of edges from the root node of leaf node.
-
 Parent of root node is NIL
-
 DataType: Set based Collection
-
 Abilities:
     insert
     delete
@@ -131,12 +148,11 @@ Abilities:
         map
         iter
 
-Each node has a key (value of node) associated so that it can be referenced and can be used for comparison.
-
+Each node has a key (value of node) associated so that it can be 
+referenced and can be used for comparison.
 Successor of a node N:
     The node with the smallest key greater than N's key.
     i.e move one step to right and then all the way to leftmost leaf.
-
 ```
 
 <p align="center">
@@ -146,10 +162,12 @@ Successor of a node N:
 	<img src="images/bst.png" width="754" height="257"/>
 </p>
 
-```python
-
 Binary Search Tree => an variant of BT where the value of left node is less than 
 and value of right node is greater than the value of current node.
+
+```python
+
+
 
 Bad BST => when height of tree is same as number of nodes
 
@@ -172,131 +190,20 @@ Good BST => A well balanced tree, where height is equal to log_2(nodes)
 		2   5 9   12
 
 ```
-
-### Traversal
-
-Can be performed iteratively or recursively. Iterative approach uses stack to store the node to be visited.
-
-**Depth First Search(preferred)**
-
-```python
-Easily implemented recursively
-```
-
-```python
-Inorder
-    Traverse the left subtree
-    Visit the parent
-    Traverse the right subtree
-
-Preorder
-    Visit parent
-    Traverse the left subtree
-    Traverse the right subtree
-
-Postorder
-    Traverse the left subtree
-    Traverse the right subtree
-    Visit parent
-
-BST when traversed in an inorder manner return a sorted array.
-    Can be used to verify the validity of the tree.
-```
-
-**Breadth First Search**
-
-```python
-Traverse all the nodes of a lower level before moving to any of the nodes of a higher level.
-```
-
-```python
-Naive approach
-    Find height of tree. Then for each level, run a recursive function by maintaining current height. 
-    Whenever the level of a node matches, use that node.
-
-Queue
-    Push the nodes of a lower level in the queue. When any node is visited, 
-    pop that node from the queue and push the child of that node in the queue.
-
-    Useful to find the height of the tree.
-```
-
-### Common Tree Problems
-
-**Lowest Common Ancestor**
-
-```python
-check whether the nodes p and q are in the left and right subtrees of the current node,
-and if so, returns the current node as the lowest common ancestor. Otherwise, 
-it recursively searches in either the left or right subtree based on the presence of nodes p and q.
-
-Pseudocode:
-
-function lowestCommonAncestor(root, p, q):
-    if root is None:
-        return None
-    
-    # If either p or q matches the root value, it is the LCA
-    if root == p or root == q:
-        return root
-    
-    # Recur for left and right subtrees
-    left_lca = lowestCommonAncestor(root.left, p, q)
-    right_lca = lowestCommonAncestor(root.right, p, q)
-    
-    # If both nodes are found in the left and right subtrees, then the current node is the LCA
-    if left_lca and right_lca:
-        return root
-    
-    # Otherwise, return the non-None node (either left_lca or right_lca)
-    return left_lca if left_lca else right_lca
-
-```
-**Binary Tree From Preorder**
-
-**Recovery of Binary Tree**
-
-**Rooting a Tree**
-
-### Operations
-
-**Validity**
-```python
-A tree is binary search tree or not can checked by utilizing the property that inorder traversal
- generates a sorted list. If it is not then three is not a valid BST
-```
-**Height**
-```python
-The height of the tree can figured out by measuring the levels of traversal in BFS.
-```
-
-**Insert**
-```python
-Insertion can be performed by utilizing DFS and attaching a new node at the appropriate leaf node.
-```
-
-**Delete**
-```python
-For deletion different cases needs to considered.
-    Node with no children (Leaf node): Simply remove the node.
-    Node with one child: Replace the node with its child.
-    Node with two children: Find the node's in-order successor (smallest node in its right subtree), 
-    copy the successor's value to the node, and then delete the successor.
-```
-
 ## Self Balancing Trees
 
-```python
+
 Trees which optimize their structure so that the height of the tree is as low as possible.
-```
+
 
 ### Red-Black Trees
 
 BST + "stuff"
 
-```python
+
 Every node has color, red or black (single bit data) associated
 
+```python
 Rules:
     The root and leaves are colored black.
     Every red node must have 2 black children.
@@ -342,7 +249,114 @@ When a element is to be inserted it is first added in the bottom most layer then
 to decide whether the node is to be added in the top layer or not, making it a probabilistic data structure. 
 ```
 
----
+## Traversal
+
+Can be performed iteratively or recursively. Iterative approach uses stack to store the node to be visited.
+
+**Depth First Search(preferred)**
+
+
+Easily implemented recursively
+
+
+```python
+Inorder
+    Traverse the left subtree
+    Visit the parent
+    Traverse the right subtree
+
+Preorder
+    Visit parent
+    Traverse the left subtree
+    Traverse the right subtree
+
+Postorder
+    Traverse the left subtree
+    Traverse the right subtree
+    Visit parent
+
+BST when traversed in an inorder manner return a sorted array.
+    Can be used to verify the validity of the tree.
+```
+
+**Breadth First Search**
+
+
+Traverse all the nodes of a lower level before moving to any of the nodes of a higher level.
+
+```python
+Naive approach
+    Find height of tree. Then for each level, run a recursive function by maintaining current height. 
+    Whenever the level of a node matches, use that node.
+
+Queue
+    Push the nodes of a lower level in the queue. When any node is visited, 
+    pop that node from the queue and push the child of that node in the queue.
+
+    Useful to find the height of the tree.
+```
+
+## Operations
+
+**Validity**
+
+A tree is binary search tree or not can checked by utilizing the property that inorder traversal
+ generates a sorted list. If it is not then three is not a valid BST
+
+**Height**
+
+The height of the tree can figured out by measuring the levels of traversal in BFS.
+
+
+**Insert**
+
+Insertion can be performed by utilizing DFS and attaching a new node at the appropriate leaf node.
+
+
+**Delete**
+
+For deletion different cases needs to considered.<br>
+    Node with no children (Leaf node): Simply remove the node.<br>
+    Node with one child: Replace the node with its child.<br>
+    Node with two children: Find the node's in-order successor (smallest node in its right subtree), 
+    copy the successor's value to the node, and then delete the successor.<br>
+
+## Common Tree Problems
+
+**Lowest Common Ancestor**
+
+check whether the nodes p and q are in the left and right subtrees of the current node,
+and if so, returns the current node as the lowest common ancestor. Otherwise, 
+it recursively searches in either the left or right subtree based on the presence of nodes p and q.
+
+```python
+Pseudocode:
+
+function lowestCommonAncestor(root, p, q):
+    if root is None:
+        return None
+    
+    # If either p or q matches the root value, it is the LCA
+    if root == p or root == q:
+        return root
+    
+    # Recur for left and right subtrees
+    left_lca = lowestCommonAncestor(root.left, p, q)
+    right_lca = lowestCommonAncestor(root.right, p, q)
+    
+    # If both nodes are found in the left and right subtrees, then the current node is the LCA
+    if left_lca and right_lca:
+        return root
+    
+    # Otherwise, return the non-None node (either left_lca or right_lca)
+    return left_lca if left_lca else right_lca
+
+```
+**Binary Tree From Preorder**
+
+**Recovery of Binary Tree**
+
+**Rooting a Tree**
 
 # Graphs
 
@@ -914,10 +928,17 @@ Kruskal's Algorithm
     Complexitiy:  O(E * log(V))
 ```
 
+<p align="center">
+	<b>Shortest Path</b>
+</p>
+<p align="center">
+	<img src="images/queue.png" width="730" height="304"/>
+</p>
+
 **Shortest Path**
 
 <p align="center">
-	<img src="images/shortpath.png" width="603" height="254"/>
+	<img src="images/comp.png" width="697" height="485"/>
 </p>
 
 
@@ -1069,7 +1090,39 @@ This approach is inefficient for dense graphs because we end up with
 several stale outdated key-value pairs in our PQ. The eager version of Dijkstra's avoids 
 duplicate key-value pairs and supports efficient value updates in O(log(n)) by 
 using an Indexed Priority Queue (IPQ)
+```
 
+**Floyd-Warshall**
+
+```python
+All-Pair Shortest Path Algorithm
+
+Complexity : O(V^3)
+
+Optimal way to represent graph is using 2D adjacency matrix.
+
+Builds up all intermediate routes between nodes i and j.
+
+Easily implemented using Dynamic Programming.
+```
+
+**Shortest part on Directed Acyclic Graph**
+
+```python
+Modified Bellman Ford
+    Perform only one iteration of bellman ford
+
+    First topological sort the graph.
+    Relax edges according to top sort.
+
+    Complexity: V + E
+```
+
+**Shortest Path when all edges are equal in weight**
+
+```python
+Using BFS
+    Complexity: V + E
 ```
 
 

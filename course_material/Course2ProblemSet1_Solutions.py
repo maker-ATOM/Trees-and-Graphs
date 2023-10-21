@@ -342,7 +342,7 @@ def run_multiple_trials(n, numTrials):
 # In[82]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+# get_ipython().run_line_magic('matplotlib', 'inline')
 from matplotlib import pyplot as plt
 import math 
 
